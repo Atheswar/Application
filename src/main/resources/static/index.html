@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management System</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="glass-header">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <h1>Spring<span class="highlight">Flow</span></h1>
+            </div>
+            <nav>
+                <button id="btn-home" class="nav-btn active">Dashboard</button>
+                <button id="btn-status" class="nav-btn">System Status</button>
+            </nav>
+        </header>
+
+        <main>
+            <section id="dashboard-section" class="active-section">
+                <div class="grid-layout">
+                    <!-- Create User Card -->
+                    <div class="card glass-card form-card">
+                        <div class="card-header">
+                            <h2>Add New User</h2>
+                            <p>Enter user details below to register a new account.</p>
+                        </div>
+                        <form id="user-form">
+                            <div class="input-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" placeholder="e.g. Alex Rivera" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" placeholder="alex@example.com" required>
+                            </div>
+                            <button type="submit" class="btn-primary">
+                                <span>Create User</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- User List Card -->
+                    <div class="card glass-card list-card">
+                        <div class="card-header row-header">
+                            <div>
+                                <h2>Active Users</h2>
+                                <p>Real-time list of registered users.</p>
+                            </div>
+                            <button id="refresh-btn" class="icon-btn" title="Refresh List">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C14.5 3 16.79 4.04 18.42 5.7L21 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M21 3V8.5H15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="table-container">
+                            <table class="user-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>User</th>
+                                        <th>Email</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="user-list-body">
+                                    <!-- Users will be injected here -->
+                                    <tr class="loading-row"><td colspan="4">Loading...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="status-section">
+                <div class="card glass-card status-card">
+                    <h2>System Endpoints Check</h2>
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <h3>Backend Health</h3>
+                            <div class="status-indicator">
+                                <span class="dot pending" id="health-dot"></span>
+                                <span id="health-text">Checking...</span>
+                            </div>
+                            <button id="check-health-btn" class="btn-sm">Test Connection (/h)</button>
+                            <div id="health-result" class="result-box"></div>
+                        </div>
+                        <div class="status-item">
+                            <h3>Order Service</h3>
+                            <div class="input-row">
+                                <input type="text" id="order-item" placeholder="Item name">
+                                <button id="check-order-btn" class="btn-sm">Order</button>
+                            </div>
+                            <div id="order-result" class="result-box"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Toast Notification Container -->
+        <div id="toast-container"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
