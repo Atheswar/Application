@@ -1,9 +1,8 @@
 package com.codewith.firstApp.service.impl;
 
-
 import java.util.List;
 
-import com.codewith.firstApp.entity.User;
+import com.codewith.firstApp.model.User;
 
 public interface UserService {
 
